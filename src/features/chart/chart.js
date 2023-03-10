@@ -8,7 +8,8 @@ import {
     Tooltip,
     Legend,
     PointElement,
-    LineElement
+    LineElement,
+    LineController
 } from 'chart.js';
 import { Bar } from "react-chartjs-2";
 import annotationPlugin from 'chartjs-plugin-annotation';
@@ -35,7 +36,8 @@ ChartJS.register(
         }
     },
     PointElement,
-    LineElement
+    LineElement,
+    LineController
 );
 
 function Chart({ setLoading, titleId, chartTitle }) {
