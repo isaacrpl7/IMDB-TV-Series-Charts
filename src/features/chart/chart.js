@@ -160,9 +160,9 @@ function Chart({ setLoading, titleId, chartTitle }) {
             const x_labels = [];
             const bk_colors = [];
             const scores = [];
-            let min_rating = 10;
+            let min_rating = 10.0;
             let season_labels = {}
-            let label_offset = 0
+            let last_index = 0
             let average_seasons_ratings = []
             let season_ratings = []
             setDisplayHeight(window.innerHeight)
@@ -207,12 +207,15 @@ function Chart({ setLoading, titleId, chartTitle }) {
                         }
                         
                         // Configure label by season
-                        const label_position = (index+label_offset)/2
+                        let label_position = (index+last_index)/2
+                        if(lastEpisode) { // In this case, index must be added +1 because of how the calculation is made (when season changes, the index is +1)
+                            label_position = ((index + 1)+last_index)/2
+                        }
                         season_labels = {
                             ...season_labels,
                             [`label${lastEpisode ? ep_list[index].season : ep_list[index].season-1}`]: {
                                 type: 'label',
-                                xValue: label_position % 2 === 0 ? label_position - 0.5 : label_position,
+                                xValue: label_position - 0.5,
                                 yValue: min_rating <= 1 ? 1 : min_rating - 0.3,
                                 backgroundColor: 'rgba(0,0,0,1)',
                                 content: ep_list.length > 200 ? [`S${lastEpisode ? ep_list[index].season : ep_list[index].season-1}`] : [`Season ${lastEpisode ? ep_list[index].season : ep_list[index].season-1}`],
@@ -223,7 +226,7 @@ function Chart({ setLoading, titleId, chartTitle }) {
                                 }
                             }
                         }
-                        label_offset = index;
+                        last_index = index;
                     }
                 }
                 
@@ -234,14 +237,13 @@ function Chart({ setLoading, titleId, chartTitle }) {
             // margin of 0.5 to scale of ratings
             setSeasonsLabels(season_labels);
             setMinRating(min_rating >= 0.5 ? min_rating - 0.5 : min_rating);
+            console.log(min_rating,'minrating')
             setLabels(x_labels);
             setBackgroundColors(bk_colors);
             setImdbScores(scores);
             setAverageSeasonsRatings(average_seasons_ratings);
-            console.log(average_seasons_ratings)
             setLoading(false)
             setVisible(true);
-            console.log(displayWidth, 'width')
         }
         getData();
 
