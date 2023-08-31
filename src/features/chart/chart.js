@@ -48,8 +48,8 @@ function Chart({ chartTitle, imdbData }) {
     const [averageSeasonsRatings, setAverageSeasonsRatings] = useState([]);
     const [, setDisplayHeight] = useState(100);
     const [, setDisplayWidth] = useState(100);
-    const imdbData = useRef([]);
-    const [visible, setVisible] = useState(false);
+    //const imdbData = useRef([]);
+    // const [visible, setVisible] = useState(false);
 
     let options = {
         scales: {
