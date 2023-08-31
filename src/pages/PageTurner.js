@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import Chart from '../features/chart/chart';
+
 import List from '../features/list/list';
 import Search from '../features/search/search';
 import Loading from '../features/ui/loading';
+import ChartPage from '../features/chart/chartPage';
 
 function PageTurner() {
     const [pageSearch, setPageSearch] = useState(true);
@@ -34,7 +35,7 @@ function PageTurner() {
                 setPageList={setPageList}
                 setLoading={setLoading}
             />}
-            {pageChart && <Chart chartTitle={`IMDB ranking by episode of ${seriesNameToChart}`} setPageChart={setPageChart} setLoading={setLoading} titleId={idToChart} />}
+            {pageChart && <ChartPage chartTitle={`IMDB ranking by episode of ${seriesNameToChart}`} setLoading={setLoading} titleId={idToChart} />}
         </>
     )
 }
