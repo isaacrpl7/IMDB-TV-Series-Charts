@@ -92,12 +92,21 @@ function ChartPage({ setLoading, titleId, chartTitle }) {
             <Background />
             {visible && 
             <div style={{display: 'flex', justifyContent: 'center', backgroundColor: '#141212'}}>
-                <div style={{color: 'white', backgroundColor: '#141212', opacity: 0.9, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                    <img onClick={() => changeType(0)} style={{width: '5rem'}} src='./nextpage.png' alt="left" ></img>
+                <div style={{color: 'white', backgroundColor: '#141212', opacity: 0.9, display: 'flex', justifyContent: 'center', alignItems: 'center', width: '3rem'}}>
+                    <img 
+                        onClick={() => changeType(0)} 
+                        style={{width: '2.5rem', transform: 'rotateY(180deg)', cursor: currentChart === 'bayes' ? 'pointer' : 'not-allowed', opacity: currentChart === 'bayes' ? 1 : 0.2}} 
+                        src='./nextpage.png' alt="left">
+                    </img>
                 </div>
                 <ChangeChart type={currentChart} />
-                <div style={{color: 'white', backgroundColor: '#141212', opacity: 0.9, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                    <img onClick={() => changeType(1)} style={{width: '5rem'}} src='./nextpage.png' alt="right" ></img>
+                <div style={{color: 'white', backgroundColor: '#141212', opacity: 0.9, display: 'flex', justifyContent: 'center', alignItems: 'center', width: '3rem'}}>
+                    <img 
+                        onClick={() => changeType(1)} 
+                        style={{width: '2.5rem', cursor: currentChart === 'bayes' ? 'not-allowed' : 'pointer', opacity: currentChart === 'bayes' ? 0.2 : 1}} 
+                        src='./nextpage.png' 
+                        alt="right" >
+                    </img>
                 </div>
             </div>
             }
